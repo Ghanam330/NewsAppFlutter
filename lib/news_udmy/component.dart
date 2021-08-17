@@ -1,8 +1,8 @@
 
 import 'package:flutter/material.dart';
 
-Widget buildArticleItem()=>Padding(
-  padding: const EdgeInsets.all(20.0),
+Widget buildArticleItem(dynamic article,context)=>Padding(
+  padding:  EdgeInsets.all(20.0),
   child: Row(
     children: [
       Container(
@@ -10,12 +10,12 @@ Widget buildArticleItem()=>Padding(
         width: 120.0,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10.0),
-          image: const DecorationImage(
-              image: NetworkImage('https://www.instagram.com/p/CMX8Q-IF-hX/'),
+          image: DecorationImage(
+              image: NetworkImage('${article['urlToImage']}'),
               fit: BoxFit.cover),
         ),
       ),
-      const SizedBox(
+       SizedBox(
         width: 20.0,
       ),
       Expanded(
@@ -28,19 +28,16 @@ Widget buildArticleItem()=>Padding(
             mainAxisAlignment: MainAxisAlignment.start,
             // ignore: prefer_const_literals_to_create_immutables
             children: [
-              const Expanded(
+              Expanded(
                 child: Text(
-                  'Title',
+                  '${article['title']}',
                   maxLines: 4,
                   overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    fontSize: 18.0,
-                    fontWeight: FontWeight.w600,
-                  ),
+                  style:Theme.of(context).textTheme.bodyText1,
                 ),
               ),
-              const Text(
-                'welcome back Ahmed',
+               Text(
+                '${article['publishedAt']}',
                 style: TextStyle(
                   color: Colors.grey,
                 ),
@@ -52,3 +49,6 @@ Widget buildArticleItem()=>Padding(
     ],
   ),
 );
+
+Widget myDriver() => Center(child: CircularProgressIndicator(
+));
